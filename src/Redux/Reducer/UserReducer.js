@@ -18,6 +18,7 @@ export const getAuthRegister = (state = initialState, action) => {
         ...state,
         loading: false,
         user: action.payload,
+        error: "",
       };
     case "USER_REGISTER_FAILED":
       return {
@@ -36,8 +37,20 @@ export const getAuthRegister = (state = initialState, action) => {
         ...state,
         loading: false,
         user: action.payload,
+        error: "",
       };
-
+    case "USER_LOGIN_FAILED":
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+      };
+    case "USER_LOGOUT":
+      return {
+        ...state,
+        token: "",
+        user: "",
+      };
     default:
       return state;
   }

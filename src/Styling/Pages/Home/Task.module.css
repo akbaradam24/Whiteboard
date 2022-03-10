@@ -4,11 +4,12 @@
 }
 
 .ContainerTodo {
-  overflow-x: auto;
-  width: calc(100vw - 282px);
+  /* overflow-x: auto;
+  white-space: nowrap; */
+  /* width: calc(100vw - 282px); */
+  width: 100%;
   margin-top: 1%;
   margin-left: 285px;
-  white-space: nowrap;
   padding: 20px;
 }
 .Todos {
@@ -51,7 +52,25 @@
   color: var(--darkBlue);
   font-weight: bold;
 }
-@media (min-width: 500px) and (max-width: 767px) {
+@media (min-width: 650px) and (max-width: 900px) {
+  .ContainerTodo {
+    margin-top: 3%;
+  }
 }
-@media (min-width: 0px) and (max-width: 499px) {
+@media (min-width: 0px) and (max-width: 650px) {
+  .ContainerTodo {
+    margin-top: 6%;
+    margin-left: 30%;
+    font-size: 12px;
+  }
+}
+@media (max-width: 740px) and (min-width: 500px) {
+  .ContainerTodo {
+    font-size: 12px;
+  }
+}
+@media (max-width: 500px) and (min-width: 0px) {
+  .ContainerTodo {
+    font-size: 9px;
+  }
 }

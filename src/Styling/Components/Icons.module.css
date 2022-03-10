@@ -1,5 +1,4 @@
 .icon {
-  /* background-color: aqua; */
   width: 35px;
   height: 35px;
   border-radius: 50%;
@@ -27,15 +26,15 @@
 }
 @media (max-width: 600px) and (min-width: 425px) {
   .icon {
-    width: 25%;
-    height: 25%;
+    width: 25px;
+    height: 25px;
     padding: 3px;
   }
 }
 @media (max-width: 424px) and (min-width: 0) {
   .icon {
-    width: 25%;
-    height: 25%;
+    width: 20px;
+    height: 20px;
     padding: 3px;
   }
 }

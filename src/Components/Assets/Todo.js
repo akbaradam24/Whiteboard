@@ -1,58 +1,32 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styles from "../../Styling/Components/Todo.module.css";
+import { useDispatch, useSelector } from "react-redux";
+import { getTasks } from "../../Redux/Action/TasksAction";
 export default function Todo() {
+  const assignedToMe = useSelector((state) => state.getTasks.task);
+  console.log(assignedToMe);
+  assignedToMe.map((e) => console.log(e));
+
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getTasks());
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
   return (
     <>
-      <div className={styles.TodoContainer}>
-        <input className={styles.input} type="checkbox" />
-        <div className={styles.textTodo}>
-          <div>
-            <label>Meja Putih Inbox Copy Application</label>
-            <p>Design Tasks • One by Meja Putih</p>
+      {assignedToMe.map((evt, _id) => (
+        <div key={_id} className={styles.TodoContainer}>
+          <input className={styles.input} type="checkbox" />
+          <div className={styles.textTodo}>
+            <div>
+              <label>{evt.title}</label>
+              <p>
+                {evt.boards?.title} • {evt.teams?.teamName}
+              </p>
+            </div>
+            <p>Due 2022-03-10</p>
           </div>
-          <p>Due 10 Jan 2020</p>
         </div>
-      </div>
-      <div className={styles.TodoContainer}>
-        <input className={styles.input} type="checkbox" />
-        <div className={styles.textTodo}>
-          <div>
-            <label>Meja Putih Vietnam</label>
-            <p>Design Tasks • One by Meja Putih</p>
-          </div>
-          <p>Due 10 Jan 2020</p>
-        </div>
-      </div>
-      <div className={styles.TodoContainer}>
-        <input className={styles.input} type="checkbox" />
-        <div className={styles.textTodo}>
-          <div>
-            <label>Email Notification Template</label>
-            <p>Dev Team • Idev Internal System</p>
-          </div>
-          <p>Due 10 Jan 2020</p>
-        </div>
-      </div>
-      <div className={styles.TodoContainer}>
-        <input className={styles.input} type="checkbox" />
-        <div className={styles.textTodo}>
-          <div>
-            <label>Header Seasonal</label>
-            <p>Dev Team • e-Project</p>
-          </div>
-          <p>Due 10 Jan 2020</p>
-        </div>
-      </div>
-      <div className={styles.TodoContainer}>
-        <input className={styles.input} type="checkbox" />
-        <div className={styles.textTodo}>
-          <div>
-            <label>Merchant Check Out Webn</label>
-            <p>Dev Team • e-Project</p>
-          </div>
-          <p>Due 10 Jan 2020</p>
-        </div>
-      </div>
+      ))}
     </>
 
     // <div className={styles.containerTodo}>

@@ -1,77 +1,76 @@
 const inititailState = {
-  boards: [],
-  boardDetail: [],
-  members: [],
-  member: [],
+  teams: [],
+  oneTeam: [],
+  teamDetail: [],
   loading: true,
   error: "",
 };
 
-export const boardReducer = (state = inititailState, action) => {
+export const teamReducer = (state = inititailState, action) => {
   switch (action.type) {
-    case "GET_BOARDS_REQUEST":
+    case "GET_TEAM_REQUEST":
       return {
         ...state,
         loading: true,
       };
-    case "GET_BOARDS_SUCCESS":
+    case "GET_TEAM_SUCCES":
       return {
         ...state,
         loading: false,
-        boards: action.payload,
+        teams: action.payload,
       };
-    case "GET_BOARDS_FAILED":
+    case "GET_TEAM_FAILED":
       return {
         ...state,
         loading: false,
         error: action.payload,
       };
-    case "GET_BOARD_DETAIL_REQUEST":
+      case "GET_ONE_TEAM_REQUEST":
       return {
         ...state,
         loading: true,
       };
-    case "GET_BOARD_DETAIL_SUCCESS":
+    case "GET_ONE_TEAM_SUCCES":
       return {
         ...state,
         loading: false,
-        boardDetail: action.payload,
+        oneTeam: action.payload,
       };
-    case "GET_BOARD_DETAIL_FAILED":
+    case "GET_ONE_TEAM_FAILED":
       return {
         ...state,
         loading: false,
         error: action.payload,
       };
-    case "GET_BOARD_MEMBERS_REQUEST":
+    case "POST_TEAM_REQUEST":
       return {
         ...state,
         loading: true,
       };
-    case "GET_BOARD_MEMBERS_SUCCESS":
+    case "POST_TEAM_SUCCES":
       return {
         ...state,
         loading: false,
-        members: action.payload,
+        teams: [action.payload, ...state.teams],
       };
-    case "GET_BOARD_MEMBERS_FAILED":
+    case "POST_TEAM_FAILED":
       return {
         ...state,
         loading: false,
         error: action.payload,
       };
-    case "GET_BOARD_MEMBER_REQUEST":
+      case "GET_TEAM_DETAIL_REQUEST":
       return {
         ...state,
         loading: true,
       };
-    case "GET_BOARD_MEMBER_SUCCESS":
+    case "GET_TEAM_DETAIL_SUCCES":
       return {
         ...state,
         loading: false,
-        member: action.payload,
+        teamDetail: action.payload,
       };
-    case "GET_BOARD_MEMBER_FAILED":
+    case "GET_TEAM_DETAIL_FAILED":
       return {
         ...state,
         loading: false,

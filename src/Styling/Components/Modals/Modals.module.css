@@ -1,0 +1,218 @@
+.modal-dialog {
+    max-width: 80%;
+}
+.modal_title {
+    width: 100%;
+    display: flex;
+    flex-wrap: inherit;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.title p {
+    font-size: 13px;
+    margin-top: 20px;
+    color: var(--grey1);
+}
+
+.btn_download {
+    margin-right: 20px;
+    background: transparent;
+    border: 0;
+    width: 24px;
+    cursor: pointer;
+}
+
+.btn_share {
+    margin-right: 20px;
+    background: transparent;
+    border: 0;
+    width: 17px;
+    cursor: pointer;
+}
+
+.input_title {
+    width: 100%;
+}
+
+.description_title {
+    margin-top: 20px;
+    margin-bottom: 5px;
+    font-weight: bold;
+    font-size: 13px;
+    color: var(--darkGrey);
+}
+
+.input_description {
+    width: 100%;
+    margin-bottom: 5px;
+}
+
+.btn_cancel {
+    align-items: flex-end;
+    border-radius: 80px;
+    width: 100px;
+    height: 40px;
+    margin: 10px;
+    color: var(--darkBlue);
+    font-size: 14px;
+    margin-left: 66%;
+}
+
+.btn_save {
+    align-items: flex-end;
+    border-radius: 80px;
+    width: 100px;
+    height: 40px;
+    margin: 10px;
+    font-size: 14px;
+    background-color: #4859EF;
+    color: white;
+}
+
+.btn_cancel:hover {
+    color: white;
+    background-color: #4859EF;
+}
+
+.btn_save:hover {
+    color: white;
+    background-color: #2f40d1;;
+}
+
+.comment_section{
+    color: var(--darkGrey);
+}
+
+.comment {
+    display: flex;
+}
+
+.comment_title{
+    margin-top: 40px;
+    margin-bottom: 5px;
+    font-weight: bold;
+    font-size: 13px;
+}
+
+.image_profile {
+    width: 35px;
+}
+
+.input_comment {
+    width: 93%;
+    margin-left: 10px;
+}
+
+.comment_wrapper {
+    display: flex;
+    justify-content:flex-start;
+    gap: 20px;
+    align-items: baseline;
+    margin-top: 20px;
+}
+
+.name_profile {
+    font-weight: bold;
+    font-size: 13px;
+}
+
+.date_comment {
+    font-size: 9px;
+}
+
+.this_comment {
+    margin-left: 55px;
+    font-size: 13px;
+}
+
+.dropdown_button {
+    margin-top: 3px;
+}
+
+.assign_member {
+    display: flex;
+    gap: 20px;
+    margin-top: 45px;
+    align-items: center;
+}
+
+.assign_member p {
+    font-weight: bold;
+    font-size: 12px;
+    align-items: center;
+    color: var(--darkGrey);
+}
+
+.add_priority {
+    display: flex;
+    gap: 31px;
+    margin-top: 30px;
+}
+
+.add_priority p {
+    font-weight: bold;
+    font-size: 13px;
+    color: var(--darkGrey);
+}
+
+.add_date {
+    display: flex;
+    gap: 18px;
+    margin-top: 30px;
+}
+
+.add_date p {
+    font-weight: bold;
+    font-size: 13px;
+    color: var(--darkGrey);
+}
+
+.add_labels {
+    display: flex;
+    gap: 38px;
+    margin-top: 30px;
+}
+
+.add_labels p {
+    font-weight: bold;
+    font-size: 13px;
+    color: var(--darkGrey);
+}
+
+.save_card {
+    margin-top: 41%;
+}
+
+.btn_cancel_card {
+    align-items: flex-end;
+    border-radius: 80px;
+    width: 100px;
+    height: 40px;
+    margin: 10px;
+    color: var(--darkBlue);
+    font-size: 14px;
+    margin-left: 52%;
+}
+
+.btn_save_card {
+    align-items: flex-end;
+    border-radius: 80px;
+    width: 100px;
+    height: 40px;
+    margin: 10px;
+    font-size: 14px;
+    background-color: #4859EF;
+    color: white;
+}
+
+.btn_cancel_card:hover {
+    color: white;
+    background-color: #4859EF;
+}
+
+.btn_save_card:hover {
+    color: white;
+    background-color: #2f40d1;
+}
+

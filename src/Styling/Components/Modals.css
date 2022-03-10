@@ -1,9 +1,7 @@
 .modal-dialog {
     max-width: 80%;
-    background-color: transparent;
 }
-
-.modal_title {
+/* .modal_title {
     width: 100%;
     display: flex;
     flex-wrap: inherit;
@@ -22,6 +20,7 @@
     background: transparent;
     border: 0;
     width: 24px;
+    cursor: pointer;
 }
 
 .btn_share {
@@ -29,6 +28,7 @@
     background: transparent;
     border: 0;
     width: 17px;
+    cursor: pointer;
 }
 
 .input_title {
@@ -59,7 +59,6 @@
     margin: 10px;
     color: #4859EF;
     font-size: 14px;
-
 }
 
 .cancel {
@@ -168,4 +167,4 @@
 .add_labels p {
     font-weight: bold;
     font-size: 13px;
-}
+}  */

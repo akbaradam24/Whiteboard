@@ -8,6 +8,9 @@ import InputMember from "./InputMember"
 import InputPriority from "./InputPriority";
 import InputDate from "./InputDate";
 import InputLabels from "./InputLabels";
+import InputDescription from "./InputDescription"
+
+import style from "../../Styling/Components/Modals/Modals.module.css";
 
 function Modals() {
   const [show, setShow] = useState(false);
@@ -27,16 +30,16 @@ function Modals() {
         keyboard={false}
       >
         <Modal.Header closeButton>
-          <Modal.Title className="modal_title">
-            <div className="title">
+          <Modal.Title className={style.modal_title}>
+            <div className={style.title}>
               <p>Design Tasks | One by Meja Putih</p>
             </div>
-            <div className="btn_header">  
+            <div className={style.btn_header}>  
               <a>
-                <img className="btn_download" alt="button download" src={download} />
+                <img className={style.btn_download} alt="button download" src={download} />
               </a>
               <a>
-                <img className="btn_share" alt="button share" src={share} />
+                <img className={style.btn_share} alt="button share" src={share} />
               </a>
             </div>
           </Modal.Title>
@@ -46,44 +49,42 @@ function Modals() {
         <Container>
           <Row>
             <Col xs={11} md={7}>
-              <InputGroup className="input_title" placeholder="Card Title" >
+              <InputGroup className={style.input_title} placeholder="Card Title" >
                 <FormControl aria-label="Large" aria-describedby="inputGroup-sizing-sm" placeholder="Card Title" />
               </InputGroup>
-              <div className="description_section">
-                <p className="description_title">Description</p>
-                <Form.Group className="input_description" controlId="exampleForm.ControlTextarea1">
-                  <Form.Control as="textarea" rows={6} />
-                </Form.Group>
-                <Button variant="light" className="btn_description cancel">Cancel</Button>
-                <Button variant="light" className="btn_description save">Save</Button>
+              <div className={style.description_section}>
+                <p className={style.description_title}>Description</p>
+                <InputDescription />
+                <Button variant="light" className={style.btn_cancel}>Cancel</Button>
+                <Button variant="light" className={style.btn_save}>Save</Button>
               </div>
-              <div className="comment_section">
-                <p className="comment_title">Comments</p>
-                <div className="comment">
-                  <a className="profile_wrapper">
-                    <img className="image_profile" src={profile} />
+              <div className={style.comment_section}>
+                <p className={style.comment_title}>Comments</p>
+                <div className={style.comment}>
+                  <a className={style.profile_wrapper}>
+                    <img className={style.image_profile} src={profile} />
                   </a>
-                  <Form.Group className="input_comment" controlId="exampleForm.ControlTextarea1">
-                    <Form.Control as="textarea" rows={2} />
+                  <Form.Group className={style.input_comment} controlId="exampleForm.ControlTextarea1">
+                    <Form.Control as="textarea" rows={3} />
                   </Form.Group>
                 </div>
-                <Button size="" variant="light" className="btn_description cancel">Cancel</Button>
-                <Button variant="light" className="btn_description save">Save</Button>
-                <div className="comment_wrapper">
+                <Button size="" variant="light" className={style.btn_cancel}>Cancel</Button>
+                <Button variant="light" className={style.btn_save}>Save</Button>
+                <div className={style.comment_wrapper}>
                   <a>
-                    <img className="image_profile" src={profile} alt="image-profile"/>
+                    <img className={style.image_profile} src={profile} alt="image-profile"/>
                   </a>
-                  <p className="name_profile">Susi Susanti</p>
-                  <p className="date_comment">Wed, 27 Jan 2022 | 5:03 PM</p>
+                  <p className={style.name_profile}>Susi Susanti</p>
+                  <p className={style.date_comment}>Wed, 27 Jan 2022 | 5:03 PM</p>
                 </div>
-                <p className="this_comment">Lorem ipsum dolor sit amet consectetur adipisicing elit. At corrupti ex facere quam animi, suscipit voluptatem obcaecati similique optio maxime illum natus</p>
+                <p className={style.this_comment}>Lorem ipsum dolor sit amet consectetur adipisicing elit. At corrupti ex facere quam animi, suscipit voluptatem obcaecati similique optio maxime illum natus</p>
               </div>
             </Col>
 
             <Col xs={7} md={5}>
               <DropdownButton 
+                className={style.dropdown_button}
                 color="grey" 
-                className="dropdown_button" 
                 title="TO DO "
                 size="sm"
                 variant="light" >
@@ -91,21 +92,25 @@ function Modals() {
                   <Dropdown.Item href="#/action-2">TO DO 2</Dropdown.Item>
                   <Dropdown.Item href="#/action-3">TO DO 3</Dropdown.Item>
               </DropdownButton>
-              <div className="assign_member"> 
+              <div className={style.assign_member}> 
                 <p>Assign To</p>
-                <InputMember/>
+                <InputMember className={style.input_member}/>
               </div>
-              <div className="add_priority" >
+              <div className={style.add_priority} >
                 <p>Priority</p>
-                <InputPriority className="label" />
+                <InputPriority className={style.label} />
               </div>
-              <div className="add_date" >
+              <div className={style.add_date} >
                 <p>Due Date</p>
                 <InputDate />
               </div>
-              <div className="add_labels" >
+              <div className={style.add_labels} >
                 <p>labels</p>
                 <InputLabels />
+              </div>
+              <div className={style.save_card}>
+              <Button size="" variant="light" className={style.btn_cancel_card}>Cancel</Button>
+              <Button variant="light" className={style.btn_save_card}>Save</Button>
               </div>
             </Col>
           </Row>

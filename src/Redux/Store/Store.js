@@ -6,10 +6,15 @@ import thunk from "redux-thunk";
 
 //REDUCER
 import reducers from "../Reducer";
+import createFilter from "redux-persist-transform-filter";
+const saveSubsetFilter = createFilter("getAuthRegister", ["token"]);
 
 const persistConfig = {
   key: "root",
   storage,
+  transforms: [saveSubsetFilter],
+  // whitelist: ["getAuthRegister"],
+  whitelist: ["getAuthRegister"],
 };
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
@@ -21,10 +26,7 @@ if (module.hot) {
     store.replaceReducer(persistReducer(persistConfig, nextRootReducer));
   });
 }
-let store = createStore(
-  persistedReducer,
-  composeEnhancers(applyMiddleware(thunk))
-);
+let store = createStore(persistedReducer, composeEnhancers(applyMiddleware(thunk)));
 let persistor = persistStore(store);
 
 export { store, persistor };

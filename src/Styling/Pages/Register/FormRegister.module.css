@@ -56,11 +56,15 @@
   width: 100%;
   height: 2.5rem;
   margin: auto;
+  padding-left: 12px;
 }
-
+.alertError {
+  margin: 0px;
+}
 .checkboxInput {
   margin-top: 6px;
-  width: 5%;
+  width: 10%;
+  flex-shrink: 0;
 }
 
 .signInMedia {
@@ -69,6 +73,7 @@
   width: 100%;
   height: 100%;
   margin: auto;
+  text-decoration: none;
 }
 .buttonSubmit {
   width: 100%;

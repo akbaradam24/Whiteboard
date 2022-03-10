@@ -1,7 +1,13 @@
 .navbarHomepage {
   width: 100%;
 }
-
+.icon {
+  /* background-color: aqua; */
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  padding: 7px;
+}
 .homepageLeft {
   display: flex;
   align-items: center;
@@ -119,12 +125,17 @@
   max-width: 40%;
   max-height: 40%;
 }
+
+.containerBtntoboards {
+  text-align: center;
+}
 .carouselImage {
   display: flex;
   justify-content: center;
   margin-top: 10%;
 }
 .footer {
+  padding-top: 5%;
   color: white;
   margin-top: 20px;
   background-color: var(--darkPurple);
@@ -179,6 +190,12 @@
 .linkFooterLI {
   list-style-type: none;
 }
+
+.availApps {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
 @media (max-width: 1024) {
   .imageMain {
     width: 70%;
@@ -222,9 +239,68 @@
     width: 60%;
     height: 70%;
   }
+  .carouselImage {
+    display: flex;
+    justify-content: center;
+    margin-top: 40%;
+    width: 36%;
+    margin-left: auto;
+    margin-right: auto;
+  }
 }
 @media (max-width: 375px) {
   .NavDropdown a {
     font-size: 8px;
+  }
+  .carouselImage {
+    display: flex;
+    justify-content: center;
+    margin-top: 50%;
+    width: 36%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+@media (max-width: 768px) and (min-width: 425px) {
+  .imageHero {
+    font-size: 12px;
+    top: -10px;
+  }
+  .imageMainMid {
+    font-size: 12px;
+  }
+  .imageHeroDown {
+    bottom: -25px;
+  }
+  .scaleDesk {
+    font-size: 12px;
+  }
+  .scaleDesk h1 {
+    font-size: 20px;
+  }
+  .linkFooter {
+    font-size: 12px;
+  }
+}
+@media (max-width: 425px) and (min-width: 375px) {
+  .imageHero {
+    font-size: 10px;
+    top: -7px;
+  }
+  .imageHeroDown {
+    bottom: -25px;
+  }
+  .scaleDesk {
+    font-size: 10px;
+  }
+  .scaleDesk h1 {
+    font-size: 15px;
+    line-height: normal;
+  }
+  .linkFooter {
+    font-size: 10px;
+  }
+  .imageMainMid {
+    font-size: 10px;
   }
 }

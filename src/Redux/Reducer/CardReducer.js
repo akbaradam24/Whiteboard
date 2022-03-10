@@ -1,23 +1,24 @@
 const inititailState = {
-  team: [],
+  cards: [],
+  cardDetail: [],
   loading: true,
   error: "",
 };
-
-export const teamReducer = (state = inititailState, action) => {
+export const cardReducer = (state = inititailState, action) => {
   switch (action.type) {
-    case "GET_TEAM_REQUEST":
+    case "GET_CARDS_REQUEST":
       return {
         ...state,
         loading: true,
       };
-    case "GET_TEAM_SUCCES":
+    case "GET_CARDS_SUCCESS":
       return {
         ...state,
+        error: "",
         loading: false,
-        team: action.payload,
+        cards: action.payload,
       };
-    case "GET_TEAM_FAILED":
+    case "GET_CARDS_FAILED":
       return {
         ...state,
         loading: false,
