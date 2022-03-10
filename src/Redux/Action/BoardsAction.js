@@ -1,7 +1,6 @@
 import axios from "axios";
 
-export const getBoards = (teamId) => {
-  console.log(teamId);
+export const getBoards = () => {
   return (dispatch, getState) => {
     axios
       .get(`${process.env.REACT_APP_BASE_URL}/team/detail/team`, {
@@ -9,6 +8,9 @@ export const getBoards = (teamId) => {
           Authorization: `Bearer ${getState().getAuthRegister.token}`,
         },
       })
-      .then((response) => console.log(response));
+      .then((response) => {
+        // console.log(response.data.result);
+        dispatch({ type: "USER_RESULT", payload: response.data.result });
+      });
   };
 };

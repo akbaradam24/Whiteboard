@@ -44,11 +44,11 @@ export const editProfile = (formData) => {
       .catch((error) => console.log(error.response));
   };
 };
-export const changePassword = (data) => {
+export const changePassword = (email) => {
   return (dispatch) => {
     dispatch({ type: "PROFILE_LOADING" });
     return axios
-      .post(`${process.env.REACT_APP_BASE_URL}/auth/forgot-password`, data)
+      .post(`${process.env.REACT_APP_BASE_URL}/auth/forgot-password`, email)
       .then((res) => {
         console.log(res);
         dispatch({ type: "CHANGE_PASSWORD_SUCCESS", payload: res?.data?.message });

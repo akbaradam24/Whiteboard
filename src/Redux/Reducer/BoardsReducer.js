@@ -1,4 +1,5 @@
 const initialState = {
+  result: [],
   titleBoards: "",
   teamName: "",
   error: "",
@@ -14,6 +15,11 @@ export const Boards = (state = initialState, action) => {
       return {
         ...state,
         teamName: action.payload,
+      };
+    case "USER_RESULT":
+      return {
+        ...state,
+        result: action.payload,
       };
     default:
       return state;

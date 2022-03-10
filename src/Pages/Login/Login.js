@@ -25,11 +25,11 @@ export default function Login() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const data = {
+    const email = {
       email: value,
     };
-    console.log(data);
-    dispatch(changePassword(data));
+    console.log(email);
+    dispatch(changePassword(email));
     // .then((res) => {
     // console.log(res);
     // if (res.status === 200) {
