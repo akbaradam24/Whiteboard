@@ -5,7 +5,7 @@ import { getTasks } from "../../Redux/Action/TasksAction";
 export default function Todo() {
   const assignedToMe = useSelector((state) => state.getTasks.task);
   console.log(assignedToMe);
-  assignedToMe.map((e) => console.log(e));
+  // assignedToMe.map((e) => console.log(e));
 
   const dispatch = useDispatch();
   useEffect(() => {
@@ -13,8 +13,8 @@ export default function Todo() {
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
   return (
     <>
-      {assignedToMe.map((evt, _id) => (
-        <div key={_id} className={styles.TodoContainer}>
+      {assignedToMe.map((evt, index) => (
+        <div key={index} className={styles.TodoContainer}>
           <input className={styles.input} type="checkbox" />
           <div className={styles.textTodo}>
             <div>

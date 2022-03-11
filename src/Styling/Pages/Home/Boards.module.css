@@ -15,6 +15,7 @@
 }
 .horizontalScroll {
   width: calc(100vw - 282px - 30px);
+  overflow-x: auto;
 }
 .cards {
   display: grid;
@@ -23,6 +24,9 @@
   gap: 30px;
 }
 @media (max-width: 320px) {
+  .cards {
+    width: 100vw;
+  }
   .Boards {
     margin-top: 10%;
     margin-left: 33%;
@@ -35,36 +39,72 @@
   }
 }
 @media (min-width: 375px) and (max-width: 425px) {
+  .horizontalScroll {
+    width: calc(186vw - 282px - 30px);
+  }
+  .cards {
+    width: 100vw;
+  }
   .Boards {
     margin-top: 10%;
     margin-left: 33%;
   }
 }
 @media (min-width: 425px) and (max-width: 650px) {
+  .horizontalScroll {
+    width: calc(176vw - 282px - 30px);
+  }
+  .cards {
+    width: 100vw;
+  }
   .Boards {
     margin-top: 10%;
     margin-left: 33%;
   }
 }
 @media (min-width: 650px) and (max-width: 700px) {
+  .horizontalScroll {
+    width: calc(150vw - 282px - 30px);
+  }
+  .cards {
+    width: 100vw;
+  }
   .Boards {
     margin-top: 10%;
     margin-left: 44%;
   }
 }
 @media (min-width: 700px) and (max-width: 768px) {
+  .horizontalScroll {
+    width: calc(150vw - 282px - 30px);
+  }
+  .cards {
+    width: 100vw;
+  }
   .Boards {
     margin-top: 5%;
     margin-left: 40%;
   }
 }
 @media (min-width: 768px) and (max-width: 800px) {
+  .horizontalScroll {
+    width: calc(142vw - 282px - 30px);
+  }
+  .cards {
+    width: 100vw;
+  }
   .Boards {
     margin-top: 5%;
     margin-left: 40%;
   }
 }
 @media (min-width: 800px) and (max-width: 1024px) {
+  .horizontalScroll {
+    width: calc(142vw - 282px - 30px);
+  }
+  .cards {
+    width: 100vw;
+  }
   .Boards {
     margin-top: 5%;
     margin-left: 35%;

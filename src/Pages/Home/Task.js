@@ -8,8 +8,8 @@ import { getTasks } from "../../Redux/Action/TasksAction";
 export default function Task() {
   const assignedToMe = useSelector((state) => state.getTasks.task);
   console.log(assignedToMe);
-  const title = assignedToMe.map((e) => console.log(e));
-  console.log(title);
+  // const title = assignedToMe.map((e) => console.log(e));
+  // console.log(title);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getTasks());
@@ -26,7 +26,7 @@ export default function Task() {
           <h1 className={style.TaskFont}>Tasks</h1>
           <div className={style.TaskAssigned}>
             <h5>Assigned to me</h5>
-            <p className={style.TaskCounter}>{assignedToMe.length}</p>
+            <p className={style.TaskCounter}>{assignedToMe.length}</p> {/*{assignedToMe.length}*/}
           </div>
           <div className={style.Line}></div>
           <div className={style.Todos}>

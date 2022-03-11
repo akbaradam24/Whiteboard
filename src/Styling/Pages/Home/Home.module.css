@@ -68,3 +68,18 @@
 .assignedCounter h2 {
   line-height: 100%;
 }
+@media (min-width: 425px) and (max-width: 650px) {
+  .section {
+    margin-top: 10%;
+  }
+}
+@media (min-width: 650px) and (max-width: 768px) {
+  .section {
+    margin-top: 7%;
+  }
+}
+@media (min-width: 768px) and (max-width: 1024px) {
+  .section {
+    margin-top: 10%;
+  }
+}

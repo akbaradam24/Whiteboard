@@ -13,8 +13,8 @@ export const getTasks = () => {
         },
       })
       .then((response) => {
-        // console.log(response.data.result);
-        dispatch({ type: "GET_TASKS", payload: response.data.result });
+        console.log(response.data.result[0].cards);
+        dispatch({ type: "GET_TASKS", payload: response.data.result[0].cards });
       });
   };
 };
