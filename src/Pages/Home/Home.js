@@ -22,9 +22,7 @@ export default function Home() {
               <a href="/boards">View all boards</a>
             </div>
             <div className={style.recentDown}>
-              <Card />
-              <Card />
-              <Card />
+              <Card limit={3} />
             </div>
           </div>
           <div className={style.recentTodo}>

@@ -11,20 +11,35 @@ import { Link } from "react-router-dom";
 // import { useParams } from "react-router";
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getTeam, getTeamDetail, postTeam } from "../../../Redux/Action/TeamAction";
+import { getTeam, postTeam } from "../../../Redux/Action/TeamAction";
 
 export default function SidebarStatic() {
-  const { teams, loading, error, teamDetail } = useSelector((state) => state.teamReducer);
-  const randomColor = ["red", "blue", "green", "purple", "red", "blue", "green", "red", "blue", "green", "purple", "red", "blue", "green"];
+  const { teams, loading, error, teamDetail } = useSelector(
+    (state) => state.teamReducer
+  );
+  const randomColor = [
+    "red",
+    "blue",
+    "green",
+    "purple",
+    "red",
+    "blue",
+    "green",
+    "red",
+    "blue",
+    "green",
+    "purple",
+    "red",
+    "blue",
+    "green",
+  ];
   const [show, setShow] = useState(false);
   const [newTeam, setNewTeam] = useState("");
 
   const dispatch = useDispatch();
-  // const {teamId} = useParams();
 
   useEffect(() => {
     dispatch(getTeam());
-    // dispatch(getTeamDetail(teamId));
   }, []);
 
   const handleClose = () => setShow(false);
@@ -106,7 +121,10 @@ export default function SidebarStatic() {
               teams.map((team, index) => (
                 // teamActive(team, active)
                 <li className={style.listSidebar} key={index}>
-                  <Link className={style.anchorSidebar} to={`/team/${team._id}`}>
+                  <Link
+                    className={style.anchorSidebar}
+                    to={`/team/${team._id}`}
+                  >
                     <Icons variant={randomColor[index]} />
                     {team.teamName}
                   </Link>
@@ -117,18 +135,31 @@ export default function SidebarStatic() {
           </ul>
         </div>
       </aside>
-      <Modal show={show} onHide={handleClose} aria-labelledby="contained-modal-title-vcenter" centered>
+      <Modal
+        show={show}
+        onHide={handleClose}
+        aria-labelledby="contained-modal-title-vcenter"
+        centered
+      >
         <Modal.Header className={style.modal_header} closeButton>
           <p className={style.modal_title}>Create Team</p>
         </Modal.Header>
         <Modal.Body>
-          <FormControl placeholder="Team Name" aria-label="Team Name" aria-describedby="basic-addon1" onChange={(e) => setNewTeam(e.target.value)} />
+          <FormControl
+            placeholder="Team Name"
+            aria-label="Team Name"
+            aria-describedby="basic-addon1"
+            onChange={(e) => setNewTeam(e.target.value)}
+          />
         </Modal.Body>
         <Modal.Footer>
           <button className={style.cancel_button} onClick={handleClose}>
             Cancel
           </button>
-          <button className={style.save_button} onClick={(e) => handleSubmit(e)}>
+          <button
+            className={style.save_button}
+            onClick={(e) => handleSubmit(e)}
+          >
             Save
           </button>
         </Modal.Footer>

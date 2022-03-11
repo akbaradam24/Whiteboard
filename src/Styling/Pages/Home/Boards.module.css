@@ -11,11 +11,16 @@
 }
 .Board {
   margin-top: 3%;
+  padding-right: 30px;
+}
+.horizontalScroll {
+  width: calc(100vw - 282px - 30px);
 }
 .cards {
-  display: flex;
-  width: 100vw;
-  gap: 2%;
+  display: grid;
+  /* width: 100vw; */
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
 }
 @media (max-width: 320px) {
   .Boards {

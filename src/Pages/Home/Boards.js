@@ -27,14 +27,16 @@ export default function Boards() {
         </div>
         <div className={style.Boards}>
           <h1>Boards</h1>
-          {getTeam.map((e, _id) => (
-            <div key={_id} className={style.Board}>
-              <h5>{e.teamName}</h5>
-              <div className={style.cards}>
-                <Card />
+          <div className={style.horizontalScroll}>
+            {getTeam.map((e, _id) => (
+              <div key={_id} className={style.Board}>
+                <h5>{e.teamName}</h5>
+                <div className={style.cards}>
+                  <Card />
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
     </>

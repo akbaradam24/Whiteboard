@@ -7,6 +7,7 @@ import style from "../../../Styling/ShareComponent/navbarUser.module.css";
 import { useSelector } from "react-redux";
 
 export default function UserNavbar() {
+  const image = useSelector((state) => state.getProfile.image);
   const { token } = useSelector((state) => state.getAuthRegister);
   return (
     <>
@@ -54,7 +55,10 @@ export default function UserNavbar() {
               <a className={style.profile_wrapper} href="/profile">
                 <img
                   className={style.profile_pict}
-                  src={profile}
+                  src={
+                    image ||
+                    "https://res.cloudinary.com/dry2yqm3h/image/upload/v1644199101/image/whiteboard/no-profile-pic_zyup0u.png"
+                  }
                   alt="default profile"
                 />
               </a>

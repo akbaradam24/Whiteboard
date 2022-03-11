@@ -49,7 +49,7 @@ export const getTeamDetail = (teamId) => {
     dispatch({ type: "GET_TEAM_DETAIL_REQUEST" });
     //API CALL
     axios
-      .get(`${process.env.REACT_APP_BASE_URL}/team/detail/${teamId}`, {
+      .get(`${process.env.REACT_APP_BASE_URL}/board/${teamId}`, {
         headers: {
           Authorization: `Bearer ${getState().getAuthRegister.token}`,
         },
@@ -60,6 +60,26 @@ export const getTeamDetail = (teamId) => {
       })
       .catch((error) => {
         dispatch({ type: "GET_TEAM_DETAIL_FAILED", payload: error });
+      });
+  };
+};
+
+export const getOneTeam = (teamId) => {
+  return (dispatch, getState) => {
+    dispatch({ type: "GET_ONE_TEAM_REQUEST" });
+    //API CALL
+    axios
+      .get(`${process.env.REACT_APP_BASE_URL}/team/${teamId}`, {
+        headers: {
+          Authorization: `Bearer ${getState().getAuthRegister.token}`,
+        },
+      })
+      .then((response) => {
+        const oneTeam = response.data.result[0];
+        dispatch({ type: "GET_ONE_TEAM_SUCCES", payload: oneTeam });
+      })
+      .catch((error) => {
+        dispatch({ type: "GET_ONE_TEAM_FAILED", payload: error });
       });
   };
 };

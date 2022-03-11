@@ -1,8 +1,6 @@
 .modal-dialog {
     max-width: 80%;
 }
-
-@media (min-width: 1220px) {
 .modal_title {
     width: 100%;
     display: flex;
@@ -50,7 +48,7 @@
     margin-bottom: 5px;
 }
 
-.btn_description_cancel {
+.btn_cancel {
     align-items: flex-end;
     border-radius: 80px;
     width: 100px;
@@ -61,7 +59,7 @@
     margin-left: 66%;
 }
 
-.btn_description_save {
+.btn_save {
     align-items: flex-end;
     border-radius: 80px;
     width: 100px;
@@ -72,14 +70,14 @@
     color: white;
 }
 
-.btn_description_cancel:hover {
+.btn_cancel:hover {
     color: white;
     background-color: #4859EF;
 }
 
-.btn_description_save:hover {
+.btn_save:hover {
     color: white;
-    background-color: #4859EF;
+    background-color: #2f40d1;;
 }
 
 .comment_section{
@@ -182,21 +180,39 @@
     color: var(--darkGrey);
 }
 
-/* @media (min-width: 576px) {
-    .btn_description_cancel {
-        margin-left: 35%;
-    }
-    .comment_wrapper {
-        margin-top: 15px;
-    }
-    .dropdown_button {
-        margin-top: 27px;
-    }
-    .input_member {
-        width: 190%;
-    }
-} */
-
+.save_card {
+    margin-top: 41%;
 }
 
+.btn_cancel_card {
+    align-items: flex-end;
+    border-radius: 80px;
+    width: 100px;
+    height: 40px;
+    margin: 10px;
+    color: var(--darkBlue);
+    font-size: 14px;
+    margin-left: 52%;
+}
+
+.btn_save_card {
+    align-items: flex-end;
+    border-radius: 80px;
+    width: 100px;
+    height: 40px;
+    margin: 10px;
+    font-size: 14px;
+    background-color: #4859EF;
+    color: white;
+}
+
+.btn_cancel_card:hover {
+    color: white;
+    background-color: #4859EF;
+}
+
+.btn_save_card:hover {
+    color: white;
+    background-color: #2f40d1;
+}
 

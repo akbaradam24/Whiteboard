@@ -8,11 +8,11 @@ import style from "../../Styling/Pages/Teams Boards/TeamsBoards.module.css";
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getBoard, postBoard } from "../../Redux/Action/BoardAction";
-import { getTeamDetail } from "../../Redux/Action/TeamAction";
+import { getOneTeam } from "../../Redux/Action/TeamAction";
 
 const TeamsBoards = () => {
   const { boards, loading, error } = useSelector((state) => state.boardReducer);
-  const { teamDetail } = useSelector((state) => state.teamReducer);
+  const { oneTeam } = useSelector((state) => state.teamReducer);
 
   //Making new Board
   const [newBoard, setNewBoard] = useState("");
@@ -22,7 +22,7 @@ const TeamsBoards = () => {
   useEffect(() => {
     //tambahin functional if di dalam useEffect
     dispatch(getBoard(teamId));
-    dispatch(getTeamDetail(teamId));
+    dispatch(getOneTeam(teamId));
   }, []);
 
   const [show, setShow] = useState(false);
@@ -46,7 +46,7 @@ const TeamsBoards = () => {
       <div className={`${style.content_wrapper} container`}>
         <div className={style.team_name}>
           <div className={style.title3}>
-            {teamDetail.teamName}
+            {oneTeam?.teamName}
             <div className={style.team_icon_container}>
               <img className={style.team_icon} src={team} alt="icon teams" />
             </div>
@@ -57,7 +57,7 @@ const TeamsBoards = () => {
             </a>
             <span> / </span>
             <a href="/teams-boards" className={style.link3}>
-              {teamDetail.teamName}
+              {oneTeam?.teamName}
             </a>
           </div>
         </div>
@@ -70,14 +70,16 @@ const TeamsBoards = () => {
                 <Link className={style.column} to={`board/${board._id}`} key={index}>
                   <div className={style.top_container}>
                     <p className={style.h4}>{board.title}</p>
-                    <p className={style.body3}>on {teamDetail.teamName}</p>
+                    <p className={style.body3}>on {oneTeam?.teamName}</p>
                   </div>
                   <div className={style.bottom_container}>
                     <div className={style.activity_container}>
                       <p className={style.body3}>Active Issue</p>
                     </div>
                     <div className={style.button_container}>
-                      <button className={style.button_issue}>{boards.length}</button>
+                      <button className={style.button_issue}>
+                        {boards.length}
+                      </button>
                     </div>
                   </div>
                 </Link>

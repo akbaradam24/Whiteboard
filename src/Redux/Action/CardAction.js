@@ -18,3 +18,34 @@ export const getCards = (listId) => {
         });
     }
 }
+
+export const postBoard = (data, teamId) => {
+    return (dispatch, getState) => {
+      dispatch({ type: "POST_UPDATE_CARD_REQUEST" });
+      //API CALL
+      console.log(data);
+      console.log(teamId);
+      axios({
+        method: "POST",
+        url: `${process.env.REACT_APP_BASE_URL}/card/detail/${teamId}`,
+        data: JSON.stringify(data),
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${getState().getAuthRegister.token}`,
+        },
+      })
+        .then((response) => {
+          //TESTING
+          const addCard = response.data.result;
+          dispatch({ type: "POST_UPDATE_CARD_SUCCESS", payload: addCard });
+        })
+        .catch((error) => {
+          dispatch({
+            type: "POST_UPDATE_CARD_FAILED",
+            payload: error.response ? 
+            error?.response?.data?.message :
+            error
+          });
+        });
+    };
+  };

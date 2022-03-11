@@ -1,5 +1,6 @@
 const inititailState = {
   teams: [],
+  oneTeam: [],
   teamDetail: [],
   loading: true,
   error: "",
@@ -19,6 +20,23 @@ export const teamReducer = (state = inititailState, action) => {
         teams: action.payload,
       };
     case "GET_TEAM_FAILED":
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+      };
+      case "GET_ONE_TEAM_REQUEST":
+      return {
+        ...state,
+        loading: true,
+      };
+    case "GET_ONE_TEAM_SUCCES":
+      return {
+        ...state,
+        loading: false,
+        oneTeam: action.payload,
+      };
+    case "GET_ONE_TEAM_FAILED":
       return {
         ...state,
         loading: false,

@@ -1,6 +1,7 @@
 const inititailState = {
   boards: [],
-  members: [],
+  boardMembers: [],
+  boardDetail: [],
   member: [],
   loading: true,
   error: "",
@@ -36,7 +37,7 @@ export const boardReducer = (state = inititailState, action) => {
         ...state,
         error: "",
         loading: false,
-        members: action.payload,
+        boardMembers: action.payload,
       };
     case "GET_BOARD_MEMBERS_FAILED":
       return {
@@ -89,7 +90,7 @@ export const boardReducer = (state = inititailState, action) => {
         ...state,
         error: "",
         loading: false,
-        members: [action.payload, ...state.members],
+        boardMembers: [action.payload, ...state.members],
       };
     case "PUT_INVITE_MEMBER_FAILED":
       return {

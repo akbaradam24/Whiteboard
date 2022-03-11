@@ -20,6 +20,7 @@ import Account from "../src/Pages/Profile/Account";
 import Register from "../src/Pages/Register/Register";
 import Home from "../src/Pages/Home/Home";
 import Card from "../src/Components/ShareComponent/Navbar/Card";
+import Dnd from "./Pages/Team Detail/Dnd";
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
         <Route path="team/:teamId" element={<Team />}>
           <Route path="board/:boardId" element={<TeamsDetail />} />
         </Route>
+        <Route path="testdnd" element={<Dnd />} />
         <Route exact path="/" element={<Homepage />} />
         <Route path="login" element={<Login />} />
         <Route path="modals" element={<Modals />} />
@@ -38,12 +40,9 @@ function App() {
         <Route path="tasks" element={<Task />} />
         <Route path="boards" element={<Boards />} />
         <Route path="todoList" element={<TodoList />} />
-        <Route path="profile" element={<Account />} />
-        <Route path="card" element={<Card />} />
-        <Route path="profile" element={<Account />} />
-        <Route path="card" element={<Card />} />
         <Route path="*" element={<ErrorPage />} />
-        {/* PROTECTED ROUTE PERSIST GATE (JATAH HAMDANI) */}
+        <Route path="profile" element={<Account />} />
+        {/* PROTECTED ROUTE PERSIST GATE ) */}
         {/*<Route
           path="/test"
           element={

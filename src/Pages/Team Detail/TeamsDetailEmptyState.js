@@ -12,7 +12,7 @@ import UserNavbar from "../../Components/ShareComponent/Navbar/NavbarIsLogin";
 import SidebarStatic from "../../Components/ShareComponent/Sidebar/SidebarStatic";
 
 import { useState, useRef } from "react";
-import style from "../../Styling/Pages/Team Detail/TeamsDetail.module.css";
+import style from "../../Styling/Pages/Team Detail/TeamsDetailEmpty.module.css";
 
 export default function TeamsDetail() {
   //FOR POPOVER INVITE

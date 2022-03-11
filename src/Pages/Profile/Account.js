@@ -4,7 +4,11 @@ import BlueLogo from "../../Assets/Logos/BlueLogo.png";
 import squareHome from "../../Assets/Icons/SquareHome.png";
 import { useDispatch, useSelector } from "react-redux";
 import { logOut } from "../../Redux/Action/UserAction";
-import { changePassword, editProfile, getProfile } from "../../Redux/Action/ProfileAction";
+import {
+  changePassword,
+  editProfile,
+  getProfile,
+} from "../../Redux/Action/ProfileAction";
 import { useNavigate } from "react-router";
 
 export default function Account() {
@@ -16,6 +20,7 @@ export default function Account() {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
   const handleOnChangePict = (evt) => {
     const pict = evt.target.files[0];
     const formData = new FormData();
@@ -46,7 +51,7 @@ export default function Account() {
     dispatch(getProfile());
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
   return (
-    <body className={style.bodyAccount}>
+    <div className={style.bodyAccount}>
       <nav className={style.navbar}>
         <div className={style.navbarLeft}>
           <a href="/">
@@ -58,17 +63,37 @@ export default function Account() {
           </a>
         </div>
         <div className={style.accountImageNav}>
-          <img src={image || "https://res.cloudinary.com/dry2yqm3h/image/upload/v1644199101/image/whiteboard/no-profile-pic_zyup0u.png"} alt="sally11" className={style.ImageNavbar} />
+          <img
+            src={
+              image ||
+              "https://res.cloudinary.com/dry2yqm3h/image/upload/v1644199101/image/whiteboard/no-profile-pic_zyup0u.png"
+            }
+            alt="sally11"
+            className={style.ImageNavbar}
+          />
         </div>
       </nav>
       <div className={style.account}>
         <div className={style.accountPict}>
           <h1>Your Photo</h1>
           <div className={style.accountImage}>
-            <img src={image || "https://res.cloudinary.com/dry2yqm3h/image/upload/v1644199101/image/whiteboard/no-profile-pic_zyup0u.png"} alt="sally11" className={style.Image} />
+            <img
+              src={
+                image ||
+                "https://res.cloudinary.com/dry2yqm3h/image/upload/v1644199101/image/whiteboard/no-profile-pic_zyup0u.png"
+              }
+              alt="sally11"
+              className={style.Image}
+            />
           </div>
-          <input type="file" placeholder="ganti" id="file" className={style.photo} onChange={handleOnChangePict} />
-          <label className={style.btnUpload} for="file">
+          <input
+            type="file"
+            placeholder="ganti"
+            id="file"
+            className={style.photo}
+            onChange={handleOnChangePict}
+          />
+          <label className={style.btnUpload} htmlFor="file">
             Upload
           </label>
           <a className={style.remove} href="/">
@@ -84,7 +109,12 @@ export default function Account() {
           <div className={style.accountRole}>
             <p>Role</p>
             <div className={style.containerDropdown}>
-              <select id="category" name="Role" className={style.Dropdown} onChange={handleOnChange}>
+              <select
+                id="category"
+                name="Role"
+                className={style.Dropdown}
+                onChange={handleOnChange}
+              >
                 <option value="All Category">All Category</option>
                 <option value="Photography">Photography</option>
                 <option value="Design">Design</option>
@@ -105,7 +135,12 @@ export default function Account() {
         <div className={style.accountIndustryCompany}>
           <div className={style.accountIndustry}>
             <p>Industry</p>
-            <select id="category" name="Role" className={style.Dropdown} onChange={handleOnChange}>
+            <select
+              id="category"
+              name="Role"
+              className={style.Dropdown}
+              onChange={handleOnChange}
+            >
               <option value="All Category">All Category</option>
               <option value="Photography">Photography</option>
               <option value="Design">Design</option>
@@ -119,7 +154,11 @@ export default function Account() {
           <div className={style.accountCompanyName}>
             <p>Company Name</p>
             <div>
-              <input className={style.inputName} type="text" placeholder={companyName} />
+              <input
+                className={style.inputName}
+                type="text"
+                placeholder={companyName}
+              />
             </div>
           </div>
         </div>
@@ -137,7 +176,11 @@ export default function Account() {
             <h2>Password</h2>
           </div>
           <div className={style.btnChangeContainer}>
-            <button className={style.btnChange} onClick={handleOnChangePassword} type="button">
+            <button
+              className={style.btnChange}
+              onClick={handleOnChangePassword}
+              type="button"
+            >
               Change
             </button>
           </div>
@@ -146,11 +189,15 @@ export default function Account() {
           <button className={style.btnChangelogout} type="button">
             Save
           </button>
-          <button className={style.btnChangelogout} type="button" onClick={handleOnClick}>
+          <button
+            className={style.btnChangelogout}
+            type="button"
+            onClick={handleOnClick}
+          >
             Log Out
           </button>
         </div>
       </div>
-    </body>
+    </div>
   );
 }

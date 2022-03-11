@@ -4,18 +4,18 @@ import Icon from "../../../Components/ShareComponent/Sidebar/Icons";
 import { useDispatch, useSelector } from "react-redux";
 // import { getBoard } from "../../../Redux/Action/BoardAction";
 import { getBoards } from "../../../Redux/Action/BoardsAction";
-export default function Card() {
+export default function Card({ limit }) {
   const assignedToMe = useSelector((state) => state.getTasks.task);
   const boardsResult = useSelector((state) => state.Boards.result);
   console.log(boardsResult);
   // const getTeam = useSelector((state) => state.teamReducer.teams);
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getBoards());
+    dispatch(getBoards(limit));
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
   return (
     <>
-      {boardsResult.map((board, index) => (
+      {boardsResult.slice(0, limit).map((board, index) => (
         <section className={style.Card}>
           <div className={style.stripedCard}></div>
           <div className={style.Icons}>
