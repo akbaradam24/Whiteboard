@@ -7,7 +7,6 @@ import pp4 from "../../Assets/Icons/pp4.png";
 import pp5 from "../../Assets/Icons/pp5.png";
 import teampict from "../../Assets/Icons/team.png";
 
-
 import UserNavbar from "../../Components/ShareComponent/Navbar/NavbarIsLogin";
 import SidebarStatic from "../../Components/ShareComponent/Sidebar/SidebarStatic";
 
@@ -17,16 +16,11 @@ import style from "../../Styling/Pages/Team Detail/TeamsDetailEmpty.module.css";
 export default function TeamsDetail() {
   //FOR POPOVER INVITE
   const [showInvite, setShowInvite] = useState(false);
-  const [targetInvite, setTargetInvite] = useState(null);
   const ref = useRef(null);
 
-  const handleClickInvite = (event) => {
-    setShowInvite(!showInvite);
-    setTargetInvite(event.target);
-  };
   return (
     <>
-       <UserNavbar />
+      <UserNavbar />
       <div className={style.main_container}>
         <SidebarStatic />
         <div className={style.content_wrapper}>
