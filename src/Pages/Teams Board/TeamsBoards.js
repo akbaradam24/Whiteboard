@@ -62,7 +62,7 @@ const TeamsBoards = () => {
           </div>
         </div>
         <Container>
-          <div className={style.column_container}>
+          <div className={`${style.column_container} container`}>
             {loading && error ? (
               <div> Loading Bro </div>
             ) : (
