@@ -16,7 +16,7 @@ export const cardReducer = (state = inititailState, action) => {
         ...state,
         error: "",
         loading: false,
-        cards: action.payload,
+        cards: [...state.cards, action.payload],
       };
     case "GET_CARDS_FAILED":
       return {

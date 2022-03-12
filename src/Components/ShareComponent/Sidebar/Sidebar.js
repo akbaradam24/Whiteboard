@@ -11,18 +11,33 @@ import { useDispatch, useSelector } from "react-redux";
 import { getTeam, postTeam } from "../../../Redux/Action/TeamAction";
 
 export default function Sidebar() {
-  const { teams, loading, error, teamDetail } = useSelector((state) => state.teamReducer);
-  const randomColor = ["red", "blue", "green", "purple", "red", "blue", "green", "red", "blue", "green", "purple", "red", "blue", "green"];
+  const { teams } = useSelector((state) => state.teamReducer);
+  const randomColor = [
+    "red",
+    "blue",
+    "green",
+    "purple",
+    "red",
+    "blue",
+    "green",
+    "red",
+    "blue",
+    "green",
+    "purple",
+    "red",
+    "blue",
+    "green",
+  ];
   const [show, setShow] = useState(false);
   const [newTeam, setNewTeam] = useState("");
   const [sidebarLogic, setSidebarLogic] = useState(true);
-  // const [show, setShow] = useState(false);
+
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getTeam());
-    // dispatch(getTeamDetail(teamId));
+    // eslint-disable-next-line
   }, []);
-  // setSidebarLogic =
+
   const handleSidebarClick = () => {
     setSidebarLogic(!sidebarLogic);
   };
@@ -88,18 +103,31 @@ export default function Sidebar() {
           </div>
         </div>
       </aside>
-      <Modal show={show} onHide={handleClose} aria-labelledby="contained-modal-title-vcenter" centered>
+      <Modal
+        show={show}
+        onHide={handleClose}
+        aria-labelledby="contained-modal-title-vcenter"
+        centered
+      >
         <Modal.Header className={style.modal_header} closeButton>
           <p className={style.modal_title}>Create Team</p>
         </Modal.Header>
         <Modal.Body>
-          <FormControl placeholder="Team Name" aria-label="Team Name" aria-describedby="basic-addon1" onChange={(e) => setNewTeam(e.target.value)} />
+          <FormControl
+            placeholder="Team Name"
+            aria-label="Team Name"
+            aria-describedby="basic-addon1"
+            onChange={(e) => setNewTeam(e.target.value)}
+          />
         </Modal.Body>
         <Modal.Footer>
           <button className={style.cancel_button} onClick={handleClose}>
             Cancel
           </button>
-          <button className={style.save_button} onClick={(e) => handleSubmit(e)}>
+          <button
+            className={style.save_button}
+            onClick={(e) => handleSubmit(e)}
+          >
             Save
           </button>
         </Modal.Footer>

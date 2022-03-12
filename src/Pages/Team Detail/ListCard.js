@@ -5,16 +5,21 @@ import {
   PopoverBody,
   PopoverHeader,
 } from "react-bootstrap";
-
+import {
+  Group,
+  Avatar,
+  Text,
+  MultiSelect,
+  Box,
+  CloseButton,
+} from "@mantine/core";
+import { forwardRef } from "react";
 import profile from "../../Assets/Icons/default pofile picture.png";
 import lowest from "../../Assets/Icons/lowest.png";
 import archive from "../../Assets/Icons/archive.png";
 import changePriority from "../../Assets/Icons/change priority.png";
 import label from "../../Assets/Icons/label.png";
 import assignTo from "../../Assets/Icons/arrow right.png";
-import pp1 from "../../Assets/Icons/pp1.png";
-import pp2 from "../../Assets/Icons/pp2.png";
-import pp3 from "../../Assets/Icons/pp3.png";
 import attach from "../../Assets/Icons/attach.png";
 import check from "../../Assets/Icons/check.png";
 import greenCheck from "../../Assets/Icons/green check.png";
@@ -28,19 +33,22 @@ import { getCards } from "../../Redux/Action/CardAction";
 import style from "../../Styling/Pages/Team Detail/TeamsDetail.module.css";
 
 export const ListCard = ({ props }) => {
-  const { cards, loading, error } = useSelector((state) => state.cardReducer);
+  const { cards } = useSelector((state) => state.cardReducer);
+  const dispatch = useDispatch();
   const ref = useRef(null);
+
+  //FOR POPOVER
   const [showCard, setShowCard] = useState(false);
   const [targetCard, setTargetCard] = useState(null);
-  const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getCards(props));
+    // eslint-disable-next-line
   }, []);
 
-  const handleClickCard = (event) => {
+  const handleClickCard = (e) => {
     setShowCard(!showCard);
-    setTargetCard(event.target);
+    setTargetCard(e.target);
   };
   //Popover
   //1. Popover CardPriority
@@ -150,88 +158,133 @@ export const ListCard = ({ props }) => {
   );
 
   //4. Popover CardAsign
+  function Value({ image, value, label, onRemove, ...others }) {
+    return (
+      <div {...others}>
+        <Box
+          sx={(theme) => ({
+            display: "flex",
+            cursor: "default",
+            alignItems: "center",
+            paddingLeft: 10,
+          })}
+        >
+          <div style={{ marginRight: 5 }}>
+            <img src={image} alt="label icon" />
+          </div>
+          <CloseButton
+            onMouseDown={onRemove}
+            variant="transparent"
+            size={22}
+            iconSize={14}
+            tabIndex={-1}
+          />
+        </Box>
+      </div>
+    );
+  }
+  const membersData = [
+    {
+      image: profile,
+      label: "Adam Akbar",
+      value: "Adam Akbar",
+    },
+
+    {
+      image: profile,
+      label: "Fakhri Al Fatah",
+      value: "Fakhri Al Fatah",
+    },
+    {
+      image: profile,
+      label: "Hamdani Abdullah",
+      value: "Hamdani Abdullah",
+    },
+    {
+      image: profile,
+      label: "John Doe",
+      value: "John Doe",
+    },
+  ];
+  // !important: Forwarding ref is required
+  const SelectItem = forwardRef(({ image, label, ...others }, ref) => {
+    return (
+      <div ref={ref} {...others}>
+        <Group noWrap>
+          <Avatar src={image} />
+          <div>
+            <Text>{label}</Text>
+          </div>
+        </Group>
+      </div>
+    );
+  });
   const popoverCardAsign = (
     <Popover id="popover-basic" className={style.popover_asign}>
-      <PopoverHeader className={style.popover_asign_header}>
-        <span className={style.asign_name}>Khalid</span>
-        <span className={style.asign_name}>Juan</span>
-      </PopoverHeader>
-      <PopoverBody className={style.popover_assign_body}>
-        <div className={style.popover_label_body_top}>
-          Select an Option or Create One
-        </div>
-        <ol className={style.asign_pp_container}>
-          <li className={style.pp_wrapper}>
-            <img
-              className={style.profile_picture_asign}
-              src={pp1}
-              alt="profile"
-            />
-            <span>Hamdani</span>
-          </li>
-          <li className={style.pp_wrapper}>
-            <img
-              className={style.profile_picture_asign}
-              src={pp2}
-              alt="profile"
-            />
-            <span>Adam</span>
-          </li>
-          <li className={style.pp_wrapper}>
-            <img
-              className={style.profile_picture_asign}
-              src={pp3}
-              alt="profile"
-            />
-            <span>Fakhri</span>
-          </li>
-        </ol>
-      </PopoverBody>
+      <MultiSelect
+        size="sm"
+        zIndex={9999}
+        placeholder="Pick member"
+        data={membersData}
+        itemComponent={SelectItem}
+        searchable
+        valueComponent={Value}
+      />
     </Popover>
   );
 
   //3. Popover CardLabel
+  const labelData = [
+    { value: "marketing", label: "Marketing" },
+    { value: "finance", label: "Finance" },
+    { value: "copywriting", label: "Copy Writing" },
+    { value: "ui/ux", label: "UI/UX" },
+    { value: "frontend", label: "Front End" },
+    { value: "backend", label: "Back End" },
+    { value: "qa", label: "QA" },
+  ];
   const popoverCardLabel = (
     <Popover id="popover-basic" className={style.popover_label}>
-      <PopoverHeader className={style.popover_label_header}>
-        <div className={style.label_category_popover}>
-          <div className={style.label_category}>Development</div>
-        </div>
-      </PopoverHeader>
-      <PopoverBody className={style.popover_label_body}>
-        <div className={style.popover_label_body_top}>
-          Select an Option or Create One
-        </div>
-        <div className={style.label_all_category_container}>
-          <div className={style.label_category_popover}>
-            <div className={style.label_category}>Design</div>
-          </div>
-          <div className={style.label_category_popover}>
-            <div className={style.label_category}>Development</div>
-          </div>
-          <div className={style.label_category_popover}>
-            <div className={style.label_category}>UI/UX</div>
-          </div>
-        </div>
-      </PopoverBody>
+      <MultiSelect
+        zIndex={9999}
+        maxSelectedValues={3}
+        data={labelData}
+        placeholder="Pick label"
+      />
     </Popover>
   );
 
+  const displayCards = () => {
+    const index = cards.findIndex((x) => x.listId === props);
+    if (cards.length > 0 && index >= 0) {
+      return cards[index].cards;
+    } else {
+      return [];
+    }
+  };
+  // const displayLabel = (array) => {
+  //   if (array === 0) {
+  //     return <></>;
+  //   } else {
+  //     return array.map((x) => <div className={style.box_category}>{x}</div>);
+  //   }
+  // };
+
   return (
     <>
-      {cards.map((card, index) => {
+      {displayCards().map((card, index) => (
         <div className={style.detail_box} key={index}>
           <div className={style.box_header}>
             <div className={style.box_header_content}>
               <div className={style.category_container}>
-                <div className={style.box_category}>{card.title}</div>
+                <div className={style.box_category}>{card.label}</div>
               </div>
               {/* POPOVER FOR CARD */}
               <Overlay
                 show={showCard}
                 target={targetCard}
                 placement="bottom-end"
-                container={ref}
+                ref={ref}
                 containerPadding={20}
               >
                 <Popover id="popover-basic">
@@ -297,7 +350,7 @@ export const ListCard = ({ props }) => {
               </Overlay>
               <button
                 className={style.box_hover_button}
-                onClick={handleClickCard}
+                onClick={(e) => handleClickCard(e)}
               >
                 ...
               </button>
@@ -325,8 +378,8 @@ export const ListCard = ({ props }) => {
               />
             </div>
           </div>
-        </div>;
-      })}
+        </div>
+      ))}
     </>
   );
 };

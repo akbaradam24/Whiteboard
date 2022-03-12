@@ -138,7 +138,7 @@
   justify-content: center;
 }
 .image_container {
-  padding-top: 20%;
+  padding-top: 16%;
   padding-bottom: 3%;
 }
 .text_container {
@@ -216,15 +216,15 @@
     padding-top: 25%;
     margin-left: 5%;
   }
-  .title3 {
-    font-style: bold;
-    font-size: 12pt;
-    line-height: 18pt;
-  }
   .text_container {
     padding-bottom: 17%;
     font-size: 10px;
     justify-content: center;
+  }
+  .title3 {
+    font-style: bold;
+    font-size: 12pt;
+    line-height: 18pt;
   }
   .link3 {
     font-style: bold underline;
@@ -256,7 +256,7 @@
     height: fit-content;
     box-sizing: border-box;
     border-radius: 4px;
-    width: 90%;
+    width: 75%;
     display: flex;
     flex-direction: column;
     margin: 1%;
@@ -266,7 +266,7 @@
     background-color: var(--darkBlueS);
     border: 1.5px dashed #4859ef;
     border-radius: 4px;
-    width: 90%;
+    width: 75%;
     display: flex;
     flex-direction: column;
     margin: 1%;
@@ -624,20 +624,6 @@
     line-height: 37pt;
     font-weight: 600;
   }
-  .link3 {
-    font-style: bold underline;
-    font-size: 12pt;
-    line-height: 18pt;
-    font-weight: 700;
-    margin-left: clamp(0px, 5px, 10px);
-    color: var(--grey1);
-  }
-  .link4 {
-    font-style: bold underline;
-    font-size: 11pt;
-    line-height: 15pt;
-    color: var(--grey1);
-  }
   .column_container {
     display: flex;
     flex-flow: row wrap;
@@ -666,6 +652,26 @@
     align-items: center;
     justify-content: center;
   }
+  .link3 {
+    font-style: bold underline;
+    font-size: 12pt;
+    line-height: 18pt;
+    font-weight: 700;
+    margin-left: clamp(0px, 5px, 10px);
+    color: var(--grey1);
+  }
+  .link4 {
+    font-style: bold underline;
+    font-size: 11pt;
+    line-height: 15pt;
+    color: var(--grey1);
+  }
+  .body3 {
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 21px;
+  }
   .h4 {
     font-size: 16px;
     font-style: none;
@@ -676,12 +682,6 @@
     margin-bottom: 3% !important;
     color: black;
     text-decoration: none !important;
-  }
-  .body3 {
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 21px;
   }
   .button_issue {
     border: none;

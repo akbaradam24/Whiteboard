@@ -14,9 +14,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { getTeam, postTeam } from "../../../Redux/Action/TeamAction";
 
 export default function SidebarStatic() {
-  const { teams, loading, error, teamDetail } = useSelector(
-    (state) => state.teamReducer
-  );
+  const { teams, loading, error } = useSelector((state) => state.teamReducer);
   const randomColor = [
     "red",
     "blue",
@@ -40,6 +38,7 @@ export default function SidebarStatic() {
 
   useEffect(() => {
     dispatch(getTeam());
+    // eslint-disable-next-line
   }, []);
 
   const handleClose = () => setShow(false);
@@ -57,32 +56,6 @@ export default function SidebarStatic() {
     setShow(false);
   };
 
-  const teamActive = (team, index) => {
-    if (team.teamName === teamDetail.teamName) {
-      return (
-        <li className={style.listSidebar} key={index}>
-          <Link className={style.anchorSidebar} to={`/team/${team._id}`}>
-            <Icons
-              variant={randomColor[index]}
-              style={{
-                background: "grey",
-              }}
-            />
-            {team.teamName}
-          </Link>
-        </li>
-      );
-    } else {
-      return (
-        <li className={style.listSidebar} key={index}>
-          <Link className={style.anchorSidebar} to={`/team/${team._id}`}>
-            <Icons variant={randomColor[index]} />
-            {team.teamName}
-          </Link>
-        </li>
-      );
-    }
-  };
   return (
     <>
       <aside className={style.sidebar}>
