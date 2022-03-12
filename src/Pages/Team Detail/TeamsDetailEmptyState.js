@@ -10,7 +10,7 @@ export default function TeamsDetail() {
       <UserNavbar />
       <div className={style.main_container}>
         <SidebarStatic />
-        <div className={style.content_wrapper}>
+        <div className={`${style.content_wrapper} container`}>
           <div className={style.empty_state}>
             <img src={saly6} alt="icon for add new Board" />
             <p className={style.empty_state_p1}>No List Created</p>

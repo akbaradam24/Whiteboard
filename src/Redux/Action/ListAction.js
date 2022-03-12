@@ -7,7 +7,7 @@ export const getList = (boardId) => {
     axios
       .get(`${process.env.REACT_APP_BASE_URL}/board/detail/${boardId}`, {
         headers: {
-          "Authorization": `Bearer ${getState().getAuthRegister.token}`,
+          Authorization: `Bearer ${getState().getAuthRegister.token}`,
         },
       })
       .then((response) => {
@@ -33,7 +33,7 @@ export const postList = (data, boardId) => {
       data: JSON.stringify(data),
       headers: {
         "Content-Type": "application/json",
-        "Authorization": `Bearer ${getState().getAuthRegister.token}`,
+        Authorization: `Bearer ${getState().getAuthRegister.token}`,
       },
     })
       .then((response) => {
@@ -59,7 +59,7 @@ export const renameList = (data, boardId, listId) => {
       data: JSON.stringify(data),
       headers: {
         "Content-Type": "application/json",
-        "Authorization": `Bearer ${getState().getAuthRegister.token}`,
+        Authorization: `Bearer ${getState().getAuthRegister.token}`,
       },
     })
       .then((response) => {
@@ -85,7 +85,7 @@ export const archiveList = (data, listId) => {
       data: JSON.stringify(data),
       headers: {
         "Content-Type": "application/json",
-        "Authorization": `Bearer ${getState().getAuthRegister.token}`,
+        Authorization: `Bearer ${getState().getAuthRegister.token}`,
       },
     })
       .then((response) => {
@@ -106,12 +106,12 @@ export const copyList = (data, boardId, listId) => {
     dispatch({ type: "COPY_LIST_REQUEST" });
     //API CALL
     axios({
-      method: "PUT",
+      method: "POST",
       url: `${process.env.REACT_APP_BASE_URL}/board/${boardId}/${listId}/copy`,
       data: JSON.stringify(data),
       headers: {
         "Content-Type": "application/json",
-        "Authorization": `Bearer ${getState().getAuthRegister.token}`,
+        Authorization: `Bearer ${getState().getAuthRegister.token}`,
       },
     })
       .then((response) => {
