@@ -7,10 +7,19 @@ import {
   PopoverBody,
   PopoverHeader,
 } from "react-bootstrap";
-
+import {
+  Group,
+  Avatar,
+  Text,
+  MultiSelect,
+  Box,
+  CloseButton,
+} from "@mantine/core";
 import teampict from "../../Assets/Icons/team.png";
-import pp1 from "../../Assets/Icons/pp1.png";
-import pp4 from "../../Assets/Icons/pp4.png";
+// import pp1 from "../../Assets/Icons/pp1.png";
+// import pp2 from "../../Assets/Icons/pp2.png";
+// import pp3 from "../../Assets/Icons/pp3.png";
+// import pp4 from "../../Assets/Icons/pp4.png";
 import pp5 from "../../Assets/Icons/pp5.png";
 import plus from "../../Assets/Icons/plus blue.png";
 import todoPlus from "../../Assets/Icons/plus.png";
@@ -20,8 +29,6 @@ import archive2 from "../../Assets/Icons/archive.png";
 import changePriority from "../../Assets/Icons/change priority.png";
 import label from "../../Assets/Icons/label.png";
 import assignTo from "../../Assets/Icons/arrow right.png";
-import pp2 from "../../Assets/Icons/pp2.png";
-import pp3 from "../../Assets/Icons/pp3.png";
 import attach from "../../Assets/Icons/attach.png";
 import check from "../../Assets/Icons/check.png";
 import greenCheck from "../../Assets/Icons/green check.png";
@@ -38,18 +45,8 @@ import { useParams } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import { v4 as uuidv4 } from "uuid";
-import {
-  getMembers,
-  getMember,
-  putArchiveList,
-  putInviteMember,
-} from "../../Redux/Action/BoardAction";
-import {
-  getList,
-  postList,
-  archiveList,
-  copyList,
-} from "../../Redux/Action/ListAction";
+import { getMembers, putInviteMember } from "../../Redux/Action/BoardAction";
+import { getList, postList } from "../../Redux/Action/ListAction";
 import { ListCard } from "./ListCard";
 
 // For Modals Addcard
@@ -66,6 +63,7 @@ import {
   InputGroup,
   Row,
 } from "react-bootstrap";
+import { forwardRef } from "react";
 import InputMember from "../../Components/Modals/InputMember";
 import InputPriority from "../../Components/Modals/InputPriority";
 import InputDate from "../../Components/Modals/InputDate";
@@ -73,30 +71,18 @@ import InputLabels from "../../Components/Modals/InputLabels";
 import InputDescription from "../../Components/Modals/InputDescription";
 
 export default function TeamsDetail() {
+  const { loading, error, boardMembers } = useSelector(
+    (state) => state.boardReducer
+  );
+  const { list } = useSelector((state) => state.listReducer);
+  const { oneTeam } = useSelector((state) => state.teamReducer);
+
   //MOCKUP BUAT DRAG AND DROP
   const itemsFromBackend = [
     { id: uuidv4(), content: "First task" },
     { id: uuidv4(), content: "Second task" },
     { id: uuidv4(), content: "Third task" },
   ];
-
-  const mockupCategory = [
-    { text: "UI/UX", id: uuidv4() },
-    { text: "Design", id: uuidv4() },
-    { text: "Marketing", id: uuidv4() },
-    { text: "UI/UX", id: uuidv4() },
-    { text: "Design", id: uuidv4() },
-    { text: "API", id: uuidv4() },
-  ];
-  const mockupDescription = [
-    { desc: "RESTFull API", id: uuidv4() },
-    { desc: "Profil API", id: uuidv4() },
-    { desc: "Homepage API", id: uuidv4() },
-    { desc: "Drag and Drop API", id: uuidv4() },
-    { desc: "Boards API", id: uuidv4() },
-    { desc: "Postman Documentation", id: uuidv4() },
-  ];
-
   const columnsFromBackend = {
     [uuidv4()]: {
       name: "Kucing List",
@@ -148,6 +134,7 @@ export default function TeamsDetail() {
     setShowCard(!showCard);
     setTargetCard(event.target);
   };
+
   //Popover
   //1. Popover CardPriority
   const [priority, setPriority] = useState("");
@@ -256,84 +243,112 @@ export default function TeamsDetail() {
   );
 
   //4. Popover CardAsign
+  function Value({ image, value, label, onRemove, ...others }) {
+    return (
+      <div {...others}>
+        <Box
+          sx={(theme) => ({
+            display: "flex",
+            cursor: "default",
+            alignItems: "center",
+            paddingLeft: 10,
+          })}
+        >
+          <div style={{ marginRight: 5 }}>
+            <img src={image} alt="label icon" />
+          </div>
+          <CloseButton
+            onMouseDown={onRemove}
+            variant="transparent"
+            size={22}
+            iconSize={14}
+            tabIndex={-1}
+          />
+        </Box>
+      </div>
+    );
+  }
+  const membersData = [
+    {
+      image: profile,
+      label: "Adam Akbar",
+      value: "Adam Akbar",
+    },
+
+    {
+      image: profile,
+      label: "Fakhri Al Fatah",
+      value: "Fakhri Al Fatah",
+    },
+    {
+      image: profile,
+      label: "Hamdani Abdullah",
+      value: "Hamdani Abdullah",
+    },
+    {
+      image: profile,
+      label: "John Doe",
+      value: "John Doe",
+    },
+  ];
+  // const newMember = boardMembers.map();
+  // !important: Forwarding ref is required
+  const SelectItem = forwardRef(({ image, label, ...others }, ref) => {
+    return (
+      <div ref={ref} {...others}>
+        <Group noWrap>
+          <Avatar src={image} />
+          <div>
+            <Text>{label}</Text>
+          </div>
+        </Group>
+      </div>
+    );
+  });
   const popoverCardAsign = (
     <Popover id="popover-basic" className={style.popover_asign}>
-      <PopoverHeader className={style.popover_asign_header}>
-        <span className={style.asign_name}>Khalid</span>
-        <span className={style.asign_name}>Juan</span>
-      </PopoverHeader>
-      <PopoverBody className={style.popover_assign_body}>
-        <div className={style.popover_label_body_top}>
-          Select an Option or Create One
-        </div>
-        <ol className={style.asign_pp_container}>
-          <li className={style.pp_wrapper}>
-            <img
-              className={style.profile_picture_asign}
-              src={pp1}
-              alt="profile"
-            />
-            <span>Hamdani</span>
-          </li>
-          <li className={style.pp_wrapper}>
-            <img
-              className={style.profile_picture_asign}
-              src={pp2}
-              alt="profile"
-            />
-            <span>Adam</span>
-          </li>
-          <li className={style.pp_wrapper}>
-            <img
-              className={style.profile_picture_asign}
-              src={pp3}
-              alt="profile"
-            />
-            <span>Fakhri</span>
-          </li>
-        </ol>
-      </PopoverBody>
+      <MultiSelect
+        size="sm"
+        zIndex={9999}
+        placeholder="Pick member"
+        data={membersData}
+        itemComponent={SelectItem}
+        searchable
+        valueComponent={Value}
+        // filter={(value, selected, item) =>
+        //   !selected &&
+        //   (item.label.toLowerCase().includes(value.toLowerCase().trim()))
+        // }
+      />
     </Popover>
   );
 
   //3. Popover CardLabel
+  const labelData = [
+    { value: "marketing", label: "Marketing" },
+    { value: "finance", label: "Finance" },
+    { value: "copywriting", label: "Copy Writing" },
+    { value: "ui/ux", label: "UI/UX" },
+    { value: "frontend", label: "Front End" },
+    { value: "backend", label: "Back End" },
+    { value: "qa", label: "QA" },
+  ];
   const popoverCardLabel = (
     <Popover id="popover-basic" className={style.popover_label}>
-      <PopoverHeader className={style.popover_label_header}>
-        <div className={style.label_category_popover}>
-          <div className={style.label_category}>Development</div>
-        </div>
-      </PopoverHeader>
-      <PopoverBody className={style.popover_label_body}>
-        <div className={style.popover_label_body_top}>
-          Select an Option or Create One
-        </div>
-        <div className={style.label_all_category_container}>
-          <div className={style.label_category_popover}>
-            <div className={style.label_category}>Design</div>
-          </div>
-          <div className={style.label_category_popover}>
-            <div className={style.label_category}>Development</div>
-          </div>
-          <div className={style.label_category_popover}>
-            <div className={style.label_category}>UI/UX</div>
-          </div>
-        </div>
-      </PopoverBody>
+      <MultiSelect
+        zIndex={9999}
+        maxSelectedValues={3}
+        data={labelData}
+        placeholder="Pick label"
+      />
     </Popover>
   );
-
-  const { loading, error, boardMembers } = useSelector(
-    (state) => state.boardReducer
-  );
-  var { list } = useSelector((state) => state.listReducer);
-  const { oneTeam } = useSelector((state) => state.teamReducer);
 
   // FOR MODALS ADD CARD
   const [showAddCard, setShowAddCard] = useState(false);
   const handleCloseAddCard = () => setShowAddCard(false);
   const handleShowAddCard = () => setShowAddCard(true);
-  const [addCard, setAddCard] = useState("");
+  // const [addCard, setAddCard] = useState("");
 
   //CONSOLE FOR TESTING
   console.log(list);
@@ -345,24 +360,24 @@ export default function TeamsDetail() {
   useEffect(() => {
     dispatch(getList(boardId));
     dispatch(getMembers(boardId));
+    // eslint-disable-next-line
   }, []);
 
   // For invite Email
-  const [inviteEmail, setInviteEmail] = useState("");
+  const [newEmail, setNewEmail] = useState("");
 
-  const handleClickInviteEmail = (e) => {
+  const handleSubmitEmail = (e) => {
     e.preventDefault();
-
     const data = {
-      email: [inviteEmail],
+      email: [newEmail],
     };
 
     dispatch(putInviteMember(data, boardId));
-    setInviteEmail("");
+    setNewEmail("");
     setShowInvite(!showInvite);
   };
   //for Archive List
-  const [archive, setArchive] = useState(false);
+  // const [archive, setArchive] = useState(false);
 
   //For New List
   const [newList, setNewList] = useState("");
@@ -414,7 +429,7 @@ export default function TeamsDetail() {
   };
   const archiveListClick = () => {
     alert("List have been Archived");
-    // if (archive === false) {
+    // if (archive ==== false) {
     //   setArchive(true);
     // } else {
     //   setArchive(false);
@@ -564,31 +579,23 @@ export default function TeamsDetail() {
               </div>
               <div className={style.header_right_container}>
                 <div className={style.team_member_container}>
-                  <img
-                    className={style.todo_profile_picture_top}
-                    style={{
-                      right: "1px",
-                      zIndex: 10,
-                    }}
-                    src={pp4}
-                    alt="profile"
-                  />
-                  {/* {loading && error ? (
+                  {loading && error ? (
                     <div> Loading Foto </div>
                   ) : (
-                    boardUser.map((user, index) =>
+                    boardMembers?.members?.map((user, index) =>
                       index < 3 ? (
                         <img
                           className={style.todo_profile_picture_top}
                           style={{
-                            right: `${index * 20}px`,
+                            right: `${index * 25}px`,
                             zIndex: 10 + index,
+                            borderRadius: "50%",
                           }}
                           key={index}
                           src={user?.profileId?.image}
                           alt="profile"
                         />
-                      ) : index == 4 ? (
+                      ) : index === 4 ? (
                         <span
                           className={style.todo_profile_picture_top}
                           style={{
@@ -599,13 +606,13 @@ export default function TeamsDetail() {
                             justifyContent: "center",
                           }}
                         >
-                          {boardMembers.length - 3}
+                          {boardMembers?.members?.length - 3}
                         </span>
                       ) : (
                         <> </>
                       )
                     )
-                  )} */}
+                  )}
                 </div>
                 <div ref={ref} className={style.invite_button_wrapper}>
                   <button
@@ -632,34 +639,38 @@ export default function TeamsDetail() {
                         Invite to Board
                       </Popover.Header>
                       <Popover.Body className={style.invite_popover_body}>
-                        <div className={style.invite_input_container}>
-                          <input
-                            className={`${style.invite_input} form-control`}
-                            required
-                            type="text"
-                            placeholder="Email Adress"
-                            onChange={(e) => setInviteEmail(e.target.value)}
-                          />
-                        </div>
-                        <div className={style.invite_popover_text}>
-                          <div className={style.invite_with_link}>
-                            <strong>Invite with Link</strong>
+                        <form onSubmit={handleSubmitEmail}>
+                          <div className={style.invite_input_container}>
+                            <input
+                              className={`${style.invite_input} form-control`}
+                              required
+                              value={newEmail}
+                              type="email"
+                              placeholder="Email Adress"
+                              onChange={(e) => setNewEmail(e.target.value)}
+                            />
                           </div>
-                          <div className={style.invite_body3}>
-                            Anyone with link can join as board member
+                          <div className={style.invite_popover_text}>
+                            <div className={style.invite_with_link}>
+                              <strong>Invite with Link</strong>
+                            </div>
+                            <div className={style.invite_body3}>
+                              Anyone with link can join as board member
+                            </div>
+                            <div className={style.create_link_invite_container}>
+                              <a className={style.create_link_invite} href="/">
+                                Create Link
+                              </a>
+                            </div>
                           </div>
-                          <div className={style.create_link_invite_container}>
-                            <a className={style.create_link_invite} href="/">
-                              Create Link
-                            </a>
-                          </div>
-                        </div>
-                        <button
-                          className={style.send_invitation_button}
-                          onClick={(e) => handleClickInviteEmail(e)}
-                        >
-                          Send Invitation
-                        </button>
+                          <button
+                            className={style.send_invitation_button}
+                            type="submit"
+                            value="Submit"
+                          >
+                            Send Invitation
+                          </button>
+                        </form>
                       </Popover.Body>
                     </Popover>
                   </Overlay>
@@ -676,14 +687,14 @@ export default function TeamsDetail() {
                         <p>Design Tasks | One by Meja Putih</p>
                       </div>
                       <div className={style.btn_header}>
-                        <a>
+                        <a href="/">
                           <img
                             className={style.btn_download}
                             alt="button download"
                             src={download}
                           />
                         </a>
-                        <a>
+                        <a href="/">
                           <img
                             className={style.btn_share}
                             alt="button share"
@@ -693,7 +704,6 @@ export default function TeamsDetail() {
                       </div>
                     </Modal.Title>
                   </Modal.Header>
-
                   <Modal.Body>
                     <Container>
                       <Row>
@@ -731,10 +741,11 @@ export default function TeamsDetail() {
                           <div className={style.comment_section}>
                             <p className={style.comment_title}>Comments</p>
                             <div className={style.comment}>
-                              <a className={style.profile_wrapper}>
+                              <a className={style.profile_wrapper} href="/">
                                 <img
                                   className={style.image_profile}
                                   src={profile}
+                                  alt="myProfile"
                                 />
                               </a>
                               <Form.Group
@@ -760,11 +771,11 @@ export default function TeamsDetail() {
                               </Button>
                             </div>
                             <div className={style.comment_wrapper}>
-                              <a>
+                              <a href="/">
                                 <img
                                   className={style.image_profile}
                                   src={profile}
-                                  alt="image-profile"
+                                  alt="profile"
                                 />
                               </a>
                               <p className={style.name_profile}>Susi Susanti</p>
@@ -773,10 +784,9 @@ export default function TeamsDetail() {
                               </p>
                             </div>
                             <p className={style.this_comment}>
-                              Lorem ipsum dolor sit amet consectetur adipisicing
-                              elit. At corrupti ex facere quam animi, suscipit
-                              voluptatem obcaecati similique optio maxime illum
-                              natus
+                              Hey. Susie here. Can you explain to me how to
+                              handle the task in more detail? I got some issue
+                              over here. Please contact me ASAP.
                             </p>
                           </div>
                         </Col>
@@ -869,96 +879,6 @@ export default function TeamsDetail() {
                         </OverlayTrigger>
                       </div>
                     </div>
-                    {/* <div className={style.box_header}>
-                      <div className={style.box_header_content}>
-                        <div className={style.category_container}>
-                          <div className={style.box_category}>
-                            {column.name}
-                          </div>
-                        </div>
-                        <Overlay
-                          show={showCard}
-                          target={targetCard}
-                          placement="bottom-end"
-                          container={ref}
-                          containerPadding={20}
-                        >
-                          <Popover id="popover-basic">
-                            <Popover.Body className={style.popover_card_body}>
-                              <OverlayTrigger
-                                trigger="click"
-                                placement="right"
-                                overlay={popoverCardLabel}
-                              >
-                                <button className={style.card_button_container}>
-                                  <img
-                                    className={style.card_hovered_img}
-                                    src={label}
-                                    alt="label button"
-                                  />
-                                  <div className={style.card_hovered_button}>
-                                    Add Label
-                                  </div>
-                                </button>
-                              </OverlayTrigger>
-                              <OverlayTrigger
-                                trigger="click"
-                                placement="right"
-                                overlay={popoverCardPriority}
-                              >
-                                <button className={style.card_button_container}>
-                                  <img
-                                    className={style.card_hovered_img}
-                                    src={changePriority}
-                                    alt="change Prioritybutton"
-                                  />
-                                  <div className={style.card_hovered_button}>
-                                    Change Priority
-                                  </div>
-                                </button>
-                              </OverlayTrigger>
-                              <OverlayTrigger
-                                trigger="click"
-                                placement="right"
-                                overlay={popoverCardAsign}
-                              >
-                                <button className={style.card_button_container}>
-                                  <img
-                                    className={style.card_hovered_img}
-                                    src={assignTo}
-                                    alt="button"
-                                  />
-                                  <div className={style.card_hovered_button}>
-                                    Assign to
-                                  </div>
-                                </button>
-                              </OverlayTrigger>
-                              <button className={style.card_button_container}>
-                                <img
-                                  className={style.card_hovered_img}
-                                  src={archive}
-                                  alt="button"
-                                />
-                                <div className={style.card_hovered_button}>
-                                  Archieve
-                                </div>
-                              </button>
-                            </Popover.Body>
-                          </Popover>
-                        </Overlay>
-                        <button
-                          className={style.box_hover_button}
-                          onClick={handleClickCard}
-                        >
-                          ...
-                        </button>
-                      </div>
-                      <div className={style.title_container}>
-                        <div className={style.box_title}>
-                          Description for List
-                        </div>
-                      </div>
-                    </div> */}
                     <div style={{ margin: 8 }}>
                       <Droppable droppableId={columnId} key={columnId}>
                         {(provided, snapshot) => {
@@ -1197,7 +1117,7 @@ export default function TeamsDetail() {
                   </div>
                 );
               })}
-              {/* {list.map((userList, index) => (
+              {list.map((userList, index) => (
                 <div className={style.content_column} key={index}>
                   <div className={style.todo_header}>
                     <div className={style.todo_container}>
@@ -1228,7 +1148,7 @@ export default function TeamsDetail() {
                     <p className={style.add_todo_text}>Add New Card</p>
                   </button>
                 </div>
-              ))} */}
+              ))}
               <div className={style.column_new_board}>
                 <div className={style.image_container}>
                   <button className={style.plus_button} onClick={handleShow}>
