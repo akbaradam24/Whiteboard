@@ -20,7 +20,6 @@ const TeamsBoards = () => {
   const dispatch = useDispatch();
   const { teamId } = useParams();
   useEffect(() => {
-    //tambahin functional if di dalam useEffect
     dispatch(getBoard(teamId));
     dispatch(getOneTeam(teamId));
     // eslint-disable-next-line
@@ -90,7 +89,6 @@ const TeamsBoards = () => {
                 </Link>
               ))
             )}
-            {/* {error && <div>Unexpeccted Error Occured </div>} */}
             <div className={style.column_new_board}>
               <div className={style.image_container}>
                 <button className={style.plus_button} onClick={handleShow}>

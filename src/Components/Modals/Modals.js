@@ -125,9 +125,8 @@ function Modals() {
                     </p>
                   </div>
                   <p className={style.this_comment}>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. At
-                    corrupti ex facere quam animi, suscipit voluptatem obcaecati
-                    similique optio maxime illum natus
+                    Hey, Susie is Here. I have some Technical Issue regarding
+                    our App. Please contact me ASAP.
                   </p>
                 </div>
               </Col>

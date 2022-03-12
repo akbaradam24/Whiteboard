@@ -1,7 +1,7 @@
 .navbar {
   display: flex;
   height: auto;
-  width: 100vw;
+  width: auto;
   align-items: center;
   justify-content: space-between;
   box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.08);
