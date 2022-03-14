@@ -7,19 +7,7 @@ import {
   PopoverBody,
   PopoverHeader,
 } from "react-bootstrap";
-// import {
-//   Group,
-//   Avatar,
-//   Text,
-//   MultiSelect,
-//   Box,
-//   CloseButton,
-// } from "@mantine/core";
 import teampict from "../../Assets/Icons/team.png";
-// import pp1 from "../../Assets/Icons/pp1.png";
-// import pp2 from "../../Assets/Icons/pp2.png";
-// import pp3 from "../../Assets/Icons/pp3.png";
-// import pp4 from "../../Assets/Icons/pp4.png";
 import pp5 from "../../Assets/Icons/pp5.png";
 import plus from "../../Assets/Icons/plus blue.png";
 import todoPlus from "../../Assets/Icons/plus.png";
@@ -30,15 +18,8 @@ import style from "../../Styling/Pages/Team Detail/TeamsDetail.module.css";
 import { useState, useRef, useEffect } from "react";
 import { useParams } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
-<<<<<<< HEAD
-import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
-import { v4 as uuidv4 } from "uuid";
 import { getMembers, putInviteMember } from "../../Redux/Action/BoardAction";
 import { getList, postList } from "../../Redux/Action/ListAction";
-=======
-import { getMembers, putInviteMember } from "../../Redux/Action/BoardAction";
-import { getList, postList, archiveList } from "../../Redux/Action/ListAction";
->>>>>>> 6932d7de0d37d13e41df0f7ac11238d1e7e5d927
 import { ListCard } from "./ListCard";
 
 // For Modals Addcard
@@ -142,23 +123,10 @@ export default function TeamsDetail() {
   };
   const archiveListClick = () => {
     alert("List have been Archived");
-<<<<<<< HEAD
-    // if (archive ==== false) {
-    //   setArchive(true);
-    // } else {
-    //   setArchive(false);
-    // }
     // const data = {
-    //    isArchieved = archive
-    // }
-    // dispatch(archiveList(data, listId));
-    // Tentuin dulu listIdnya, buatin di click
-=======
-    const data = {
-      isArchieved: true,
-    };
-    dispatch(archiveList(data, boardId));
->>>>>>> 6932d7de0d37d13e41df0f7ac11238d1e7e5d927
+    //   isArchieved: true,
+    // };
+    // dispatch(archiveList(data, boardId));
   };
 
   // Popover Todo
@@ -228,7 +196,7 @@ export default function TeamsDetail() {
             <div className={style.header_right_container}>
               <div className={style.team_member_container}>
                 {loading && error ? (
-                  <div> Loading Foto </div>
+                  <div> Loading Bro </div>
                 ) : (
                   boardMembers?.members?.map((user, index) =>
                     index < 3 ? (
