@@ -2,6 +2,10 @@
   "name": "whiteboard",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": "v16.13.0",
+    "yarn": "1.22.17"
+  },
   "dependencies": {
     "@ckeditor/ckeditor5-build-classic": "ckeditor/ckeditor5-build-classic",
     "@ckeditor/ckeditor5-react": "^4.0.0",

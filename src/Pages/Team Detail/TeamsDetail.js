@@ -30,15 +30,8 @@ import style from "../../Styling/Pages/Team Detail/TeamsDetail.module.css";
 import { useState, useRef, useEffect } from "react";
 import { useParams } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
-<<<<<<< HEAD
-import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
-import { v4 as uuidv4 } from "uuid";
 import { getMembers, putInviteMember } from "../../Redux/Action/BoardAction";
 import { getList, postList } from "../../Redux/Action/ListAction";
-=======
-import { getMembers, putInviteMember } from "../../Redux/Action/BoardAction";
-import { getList, postList, archiveList } from "../../Redux/Action/ListAction";
->>>>>>> 6932d7de0d37d13e41df0f7ac11238d1e7e5d927
 import { ListCard } from "./ListCard";
 
 // For Modals Addcard
@@ -142,7 +135,6 @@ export default function TeamsDetail() {
   };
   const archiveListClick = () => {
     alert("List have been Archived");
-<<<<<<< HEAD
     // if (archive ==== false) {
     //   setArchive(true);
     // } else {
@@ -153,12 +145,6 @@ export default function TeamsDetail() {
     // }
     // dispatch(archiveList(data, listId));
     // Tentuin dulu listIdnya, buatin di click
-=======
-    const data = {
-      isArchieved: true,
-    };
-    dispatch(archiveList(data, boardId));
->>>>>>> 6932d7de0d37d13e41df0f7ac11238d1e7e5d927
   };
 
   // Popover Todo
@@ -228,7 +214,7 @@ export default function TeamsDetail() {
             <div className={style.header_right_container}>
               <div className={style.team_member_container}>
                 {loading && error ? (
-                  <div> Loading Foto </div>
+                  <div> Loading Bro </div>
                 ) : (
                   boardMembers?.members?.map((user, index) =>
                     index < 3 ? (
