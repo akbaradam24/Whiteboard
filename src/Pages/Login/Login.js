@@ -11,7 +11,9 @@ import { changePassword } from "../../Redux/Action/ProfileAction";
 
 export default function Login() {
   const error = useSelector((state) => state.getAuthRegister.error);
-  const messageSuccess = useSelector((state) => state.getProfile.messageSuccess);
+  const messageSuccess = useSelector(
+    (state) => state.getProfile.messageSuccess
+  );
   const messageFail = useSelector((state) => state.getProfile.error);
   console.log(messageFail);
   const navigate = useNavigate();
@@ -65,7 +67,9 @@ export default function Login() {
             const errors = {};
             if (!values.email) {
               errors.email = "Yang bener apa";
-            } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)) {
+            } else if (
+              !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
+            ) {
               errors.email = "Invalid email address";
             }
             return errors;
@@ -75,12 +79,11 @@ export default function Login() {
               .then((res) => {
                 console.log(res);
                 if (res.status === 200 && res?.data?.result?.token) {
+                  setSubmitting(false);
                   navigate("/");
                 }
               })
-              .finally(() => {
-                setSubmitting(false);
-              });
+              .finally(() => {});
           }}
         >
           {({
@@ -98,20 +101,53 @@ export default function Login() {
                 <h1>Sign in</h1>
               </div>
 
-              <input className={style.formInput} type="email" name="email" onChange={handleChange} onBlur={handleBlur} value={values.email} placeholder="Email" />
+              <input
+                className={style.formInput}
+                type="email"
+                name="email"
+                onChange={handleChange}
+                onBlur={handleBlur}
+                value={values.email}
+                placeholder="Email"
+              />
               {errors.email && touched.email && errors.email}
-              <input className={style.formInput} type="password" name="password" onChange={handleChange} onBlur={handleBlur} value={values.password} placeholder="Password" />
-              <p className={style.alertError}>{(errors.password && touched.password && errors.password) || error}</p>
+              <input
+                className={style.formInput}
+                type="password"
+                name="password"
+                onChange={handleChange}
+                onBlur={handleBlur}
+                value={values.password}
+                placeholder="Password"
+              />
+              <p className={style.alertError}>
+                {(errors.password && touched.password && errors.password) ||
+                  error}
+              </p>
 
-              <button type="submit" className={style.buttonSubmit} disabled={isSubmitting}>
+              <button
+                type="submit"
+                className={style.buttonSubmit}
+                disabled={isSubmitting}
+              >
                 Submit
               </button>
               <p onClick={handleShow}>Forgot Password</p>
               <p className={style.text}>or use your email to sign in:</p>
               <div>
-                <a className={style.signInMedia} href=" https://whiteboard-product.herokuapp.com/api/v1/auth/google">
+                <a
+                  className={style.signInMedia}
+                  href=" https://whiteboard-product.herokuapp.com/api/v1/auth/google"
+                >
                   <button type="button" className={style.btn_sosialMedia}>
-                    <svg className={style.icon} width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <svg
+                      className={style.icon}
+                      width="30"
+                      height="30"
+                      viewBox="0 0 30 30"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
                       <g clipPath="url(#clip0_19_358)">
                         <path
                           d="M6.64863 18.1294L5.60437 22.0277L1.78764 22.1085C0.646992 19.9928 0 17.5723 0 15C0 12.5126 0.604922 10.167 1.67719 8.10164H1.67801L5.07598 8.72461L6.56449 12.1022C6.25295 13.0104 6.08314 13.9854 6.08314 15C6.08326 16.1011 6.28271 17.1561 6.64863 18.1294Z"
@@ -144,18 +180,31 @@ export default function Login() {
           )}
         </Formik>
       </div>
-      <Modal show={show} onHide={handleClose} aria-labelledby="contained-modal-title-vcenter" centered>
+      <Modal
+        show={show}
+        onHide={handleClose}
+        aria-labelledby="contained-modal-title-vcenter"
+        centered
+      >
         <Modal.Header className={style.modal_header} closeButton>
           <p className={style.modal_title}>Forgot Password</p>
         </Modal.Header>
         <Modal.Body>
-          <FormControl placeholder="Your Email" aria-label="Team Name" aria-describedby="basic-addon1" onChange={(e) => setValue(e.target.value)} />
+          <FormControl
+            placeholder="Your Email"
+            aria-label="Team Name"
+            aria-describedby="basic-addon1"
+            onChange={(e) => setValue(e.target.value)}
+          />
         </Modal.Body>
         <Modal.Footer>
           <button className={style.cancel_button} onClick={handleClose}>
             Cancel
           </button>
-          <button className={style.save_button} onClick={(e) => handleSubmit(e)}>
+          <button
+            className={style.save_button}
+            onClick={(e) => handleSubmit(e)}
+          >
             Send
           </button>
         </Modal.Footer>
